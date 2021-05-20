@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed;
     public float jumpForce;
     private Vector2 input;
-
+    int direction = 1;
     //
     public Transform groundCheckPoint;
     public float radius;
@@ -24,7 +24,14 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         input = new Vector2(Input.GetAxis("Horizontal") * moveSpeed, _rigidbody.velocity.y);
-        _rigidbody.velocity = input;
+        if (input.x > 0)
+            direction = 1;
+        else if (input.x < 0)
+            direction = -1;
+        
+           
+            _rigidbody.velocity = input;
+        FlipSprite();
 
         GroundCheck();
         if (Input.GetButtonDown("Jump"))
@@ -45,7 +52,11 @@ public class PlayerController : MonoBehaviour
     {
         isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, radius, whatIsGround);
     }
-
+    void FlipSprite()
+    {
+        //By rotations
+        transform.eulerAngles = new Vector3(0, direction == 1 ? 0 : 180, 0);
+    }
 
 
 }   
