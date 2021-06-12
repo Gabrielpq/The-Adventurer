@@ -4,21 +4,40 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
-{
+{ 
+    //Movement
     private Rigidbody2D _rigidbody;
-    public float moveSpeed;
-    public float jumpForce;
+    
     private Vector2 input;
-    int direction = 1;
-    //
+    public float moveSpeed;
+    private int direction = 0;
+
+    //Jump
+    public float jumpForce;
+
+    //GroundCheck
     public Transform groundCheckPoint;
     public float radius;
     public LayerMask whatIsGround;
     private bool isGrounded = false;
 
+    //Respawn
+    private Vector3 resetPos;
+
+    //Shooting
+    public GameObject bullet; //Aquí vamos a añadir el prefab que se va a clonar al disparar
+    public Transform shootPos;
+
+    //
+    public BulletManager bulletManager;
+
+
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
+
+        bulletManager = GetComponent<BulletManager>();
+        bulletManager.Init();
     }
 
     void Update()
@@ -28,9 +47,9 @@ public class PlayerController : MonoBehaviour
             direction = 1;
         else if (input.x < 0)
             direction = -1;
-        
-           
-            _rigidbody.velocity = input;
+
+
+        _rigidbody.velocity = input;
         FlipSprite();
 
         GroundCheck();
@@ -38,6 +57,21 @@ public class PlayerController : MonoBehaviour
         {
             Jump();
         }
+
+        if (Input.GetButton("Fire1")) 
+        {
+            if (bulletManager.CanShoot()) 
+            {
+                ShootBullet();
+            }
+        }
+    }
+
+    void ShootBullet() 
+    {
+         GameObject tempBullet = Instantiate(bullet, shootPos.position, Quaternion.identity);
+         tempBullet.GetComponent<Bullet>().Shoot(direction);
+         bulletManager.ShootBullet();
     }
 
     void Jump()
