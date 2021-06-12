@@ -495,6 +495,7 @@ MonoBehaviour:
     m_Bits: 256
   bullet: {fileID: 5984413950869079564, guid: 98b919bee1227ab42ade7b774ff4c53f, type: 3}
   shootPos: {fileID: 1783588051}
+  bulletManager: {fileID: 0}
 --- !u!114 &69923014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -771,6 +772,7 @@ GameObject:
   - component: {fileID: 392621394}
   - component: {fileID: 392621393}
   - component: {fileID: 392621392}
+  - component: {fileID: 392621395}
   m_Layer: 0
   m_Name: Bala (3)
   m_TagString: Untagged
@@ -858,6 +860,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &392621395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 392621391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d217f50519be2524087006c8041dc4fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &409975162
 GameObject:
   m_ObjectHideFlags: 0
@@ -1761,8 +1775,8 @@ Tilemap:
   - first: {x: -1, y: 0, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileIndex: 3
+      m_TileSpriteIndex: 3
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -1770,8 +1784,8 @@ Tilemap:
   - first: {x: -1, y: 1, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileIndex: 3
+      m_TileSpriteIndex: 3
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -1870,18 +1884,23 @@ Tilemap:
   m_TileAssetArray:
   - m_RefCount: 5
     m_Data: {fileID: 11400000, guid: dffc4340647d2fa49975408743684a49, type: 2}
-  - m_RefCount: 6
+  - m_RefCount: 4
     m_Data: {fileID: 11400000, guid: e9b3c1c4e24af1148b247e68164ed513, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 633a2bbbdbbf08f4dbccc9ecce50b0e4, type: 2}
+  - m_RefCount: 2
+    m_Data: {fileID: 11400000, guid: cdebc836cbf12ec4d9e5b2b06242c9ba, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 5
     m_Data: {fileID: 849386357423211777, guid: 2c26bb833633bd84a8dbe9d960d5118d, type: 3}
-  - m_RefCount: 6
+  - m_RefCount: 4
     m_Data: {fileID: -1071355130424730665, guid: 2c26bb833633bd84a8dbe9d960d5118d,
       type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 566547506130943798, guid: 2c26bb833633bd84a8dbe9d960d5118d, type: 3}
+  - m_RefCount: 2
+    m_Data: {fileID: 3062309112588322196, guid: 2c26bb833633bd84a8dbe9d960d5118d,
+      type: 3}
   m_TileMatrixArray:
   - m_RefCount: 12
     m_Data:
@@ -2087,7 +2106,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1341792775}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.49, y: 4.29, z: 0}
+  m_LocalPosition: {x: -2.71, y: 4.45, z: 0}
   m_LocalScale: {x: 1.2771702, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2149,6 +2168,36 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &1430032998
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1430032999}
+  m_Layer: 0
+  m_Name: BulletUIContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1430032999
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1430032998}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.03, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 23
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1500027177
 GameObject:
   m_ObjectHideFlags: 0
