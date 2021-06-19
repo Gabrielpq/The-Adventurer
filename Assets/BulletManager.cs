@@ -1,22 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class BulletManager : MonoBehaviour
 {
     public int maxBulletAmount; //20
     public int currentBulletAmount; //0
+    public TextMeshProUGUI bulletText;
 
     public void Init()
     {
         currentBulletAmount = maxBulletAmount;
+        UpdateBulletText();
         //Antes era 0
         //Ahora es 20
     }
 
-    public void ShootBullet() 
+    public void ShootBullet()
     {
         currentBulletAmount = Mathf.Clamp(currentBulletAmount - 1, 0, maxBulletAmount);
+        UpdateBulletText();
     }
 
     //Ejemplo
@@ -28,6 +32,12 @@ public class BulletManager : MonoBehaviour
     public void RechargeBullet() 
     {
         currentBulletAmount = Mathf.Clamp(currentBulletAmount + 10, 0, maxBulletAmount);
+        UpdateBulletText();
+    }
+
+    void UpdateBulletText()
+    {
+        bulletText.text = "x " + currentBulletAmount;
     }
 
     public bool CanShoot()
